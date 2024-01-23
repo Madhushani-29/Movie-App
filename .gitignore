@@ -1,0 +1,49 @@
+# See https://flutter.dev/docs/get-started/install/windows#update-your-path
+# In all cases ensure `flutter/bin` is in your path
+
+## macOS (uncomment the following line)
+# .DS_Store
+
+## IntelliJ related
+.idea/
+*.iml
+
+## Visual Studio Code related
+.vscode/
+
+## Flutter/Dart/Pub related
+.flutter-plugins
+.flutter-plugins-dependencies
+.dart_tool/
+.pub-cache/
+build/
+.dart_tool/
+.pub/
+
+## Android related
+build/
+android/app/build/
+android/captures/
+.android/
+local.properties
+
+## iOS/Xcode related
+ios/Pods/
+ios/Runner/GeneratedPluginRegistrant.*
+
+## Web related
+.webdev/
+build/web/
+.dart_tool/
+
+## Test
+.test/
+
+## Android Studio
+.gradle/
+.idea/
+
+## VS Code directories
+.vscode/
+.history/
+.vscode-test/
