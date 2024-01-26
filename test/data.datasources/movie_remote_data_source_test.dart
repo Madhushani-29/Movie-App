@@ -20,28 +20,52 @@ void main() {
 
   final String tUrl =
       "https://api.themoviedb.org/3/trending/movie/day?language=en-US&api_key=26e2a7846caf53650a6f9bc938e4dc0d";
-  const String sampleAPIResponse = "'''...'''";
+  const String sampleApiResponse = '''
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/path.jpg",
+      "id": 1,
+      "title": "Sample Movie",
+      "original_language": "en",
+      "original_title": "Sample Movie",
+      "overview": "Overview here",
+      "poster_path": "/path2.jpg",
+      "media_type": "movie",
+      "genre_ids": [1, 2, 3],
+      "popularity": 100.0,
+      "release_date": "2020-01-01",
+      "video": false,
+      "vote_average": 7.5,
+      "vote_count": 100
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 1
+}
+''';
 
   test('should perform a GET request on a url to get trending movies',
       () async {
     // arrange
     when(mockHttpClient.get(Uri.parse(tUrl)))
-        .thenAnswer((_) async => http.Response(sampleAPIResponse, 200));
+        .thenAnswer((_) async => http.Response(sampleApiResponse, 200));
     // act
-    await dataSource.getTrendingMovies;
+    await dataSource.getTrendingMovies();
     // assert
-    verify(mockHttpClient.get(Uri.parse('our api')));
+    verify(mockHttpClient.get(Uri.parse(tUrl)));
   });
 
   test('should throw a ServerException when the response code is 404',
       () async {
     // arrange
-    when(mockHttpClient.get(Uri.parse(tUrl)))
-        .thenAnswer((_) async => http.Response(sampleAPIResponse, 400));
+    when(mockHttpClient.get(any))
+        .thenAnswer((_) async => http.Response("Something went wrong", 404));
     // act
-    await dataSource.getTrendingMovies;
     final call = dataSource.getTrendingMovies;
     // assert
-    expect(() => call(), throwsA(isA<ServerException>));
+    expect(() => call(), throwsA(isA<ServerException>()));
   });
 }

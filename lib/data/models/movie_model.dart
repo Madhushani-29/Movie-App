@@ -19,7 +19,7 @@ class MovieModel {
         id: json['id'],
         title: json['title'],
         overview: json['overview'],
-        posterPath: json['posterPath']);
+        posterPath: json['poster_path']);
   }
 
   //convert MoviModel to JSON
@@ -29,7 +29,7 @@ class MovieModel {
       'id': id,
       'title': title,
       'overview': overview,
-      'posterPath': posterPath,
+      'poster_path': posterPath,
     };
   }
 }
