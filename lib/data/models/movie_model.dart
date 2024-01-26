@@ -13,6 +13,7 @@ class MovieModel {
   });
 
   //convert JSON to MovieModal
+  //JSON Deserialization
   factory MovieModel.fromJson(Map<String, dynamic> json) {
     return MovieModel(
         id: json['id'],
@@ -22,6 +23,7 @@ class MovieModel {
   }
 
   //convert MoviModel to JSON
+  //JSON Serialization
   Map<String, dynamic> toJson() {
     return {
       'id': id,
