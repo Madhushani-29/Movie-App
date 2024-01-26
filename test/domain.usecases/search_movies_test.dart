@@ -7,8 +7,7 @@ import 'package:movieapp/domain/usecase/search_movies.dart';
 
 import 'get_trending_movies_test.mocks.dart';
 
-//comment when test other layers
-//@GenerateNiceMocks([MockSpec<MovieRepository>()])
+@GenerateNiceMocks([MockSpec<MovieRepository>()])
 void main() {
   late SearchMovies usecase;
   late MockMovieRepository mockMovieRepository;
