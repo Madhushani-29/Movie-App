@@ -82,4 +82,15 @@ void main() {
     // assert
     verify(mockHttpClient.get(Uri.parse(pUrl)));
   });
+
+    test('should throw a ServerException when the response code is 404',
+      () async {
+    // arrange
+    when(mockHttpClient.get(any))
+        .thenAnswer((_) async => http.Response("Something went wrong", 404));
+    // act
+    final call = () => dataSource.getPopularMovies();
+    // assert
+    expect(() => call(), throwsA(isA<ServerException>()));
+  });
 }
