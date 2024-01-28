@@ -18,7 +18,7 @@ void main() {
     dataSource = MovieRemoteDataSourceImpl(client: mockHttpClient);
   });
 
-  final String tQuery="Avengers";
+  final String tQuery = "Avengers";
 
   final String tUrl =
       "https://api.themoviedb.org/3/trending/movie/day?language=en-US&api_key=26e2a7846caf53650a6f9bc938e4dc0d";
@@ -26,7 +26,8 @@ void main() {
   final String pUrl =
       "https://api.themoviedb.org/3/movie/popular?api_key=26e2a7846caf53650a6f9bc938e4dc0d";
 
-  final String sUrl="https://api.themoviedb.org/3/search/movie?query=$tQuery&api_key=26e2a7846caf53650a6f9bc938e4dc0d";
+  final String sUrl =
+      "https://api.themoviedb.org/3/search/movie?query=$tQuery&api_key=26e2a7846caf53650a6f9bc938e4dc0d";
 
   const String sampleApiResponse = '''
 {
@@ -87,7 +88,7 @@ void main() {
     verify(mockHttpClient.get(Uri.parse(pUrl)));
   });
 
-    test('should throw a ServerException when the response code is 404',
+  test('should throw a ServerException when the response code is 404',
       () async {
     // arrange
     when(mockHttpClient.get(any))
@@ -108,7 +109,7 @@ void main() {
     verify(mockHttpClient.get(Uri.parse(sUrl)));
   });
 
-    test('should throw a ServerException when the response code is 404',
+  test('should throw a ServerException when the response code is 404',
       () async {
     // arrange
     when(mockHttpClient.get(any))
