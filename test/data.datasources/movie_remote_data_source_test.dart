@@ -20,6 +20,10 @@ void main() {
 
   final String tUrl =
       "https://api.themoviedb.org/3/trending/movie/day?language=en-US&api_key=26e2a7846caf53650a6f9bc938e4dc0d";
+
+  final String pUrl =
+      "https://api.themoviedb.org/3/movie/popular?api_key=26e2a7846caf53650a6f9bc938e4dc0d";
+
   const String sampleApiResponse = '''
 {
   "page": 1,
@@ -67,5 +71,15 @@ void main() {
     final call = dataSource.getTrendingMovies;
     // assert
     expect(() => call(), throwsA(isA<ServerException>()));
+  });
+
+  test('should perform a GET request on a url to get popular movies', () async {
+    // arrange
+    when(mockHttpClient.get(Uri.parse(pUrl)))
+        .thenAnswer((_) async => http.Response(sampleApiResponse, 200));
+    // act
+    await dataSource.getPopularMovies();
+    // assert
+    verify(mockHttpClient.get(Uri.parse(pUrl)));
   });
 }
