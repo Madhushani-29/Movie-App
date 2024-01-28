@@ -5,13 +5,15 @@ import 'package:movieapp/data/data_source/movie_remote_data_source.dart';
 import 'package:movieapp/data/models/movie_model.dart';
 import 'package:movieapp/domain/entities/Movie.dart';
 
+import 'movie_repository_impl_test.mocks.dart';
+
 @GenerateNiceMocks([MockSpec<MovieRemoteDataSource>()])
 void main() {
   late MovieRepositoryImpl repository;
-  late MovieRemoteDataSource mockMovieRemoteDataSource;
+  late MockMovieRemoteDataSource mockMovieRemoteDataSource;
 
   setUp(() {
-    mockMovieRemoteDataSource = MovieRemoteDataSource();
+    mockMovieRemoteDataSource = MockMovieRemoteDataSource();
     repository =
         MovieRepositoryImpl(remoteDataSource: mockMovieRemoteDataSource);
   });
