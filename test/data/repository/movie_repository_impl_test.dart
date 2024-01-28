@@ -55,7 +55,7 @@ void main() {
     // assert
     expect(result, tMoviesList);
     verify(mockMovieRemoteDataSource.getTrendingMovies());
-    //verifyNoMoreInteractions(mockMovieRemoteDataSource);
+    verifyNoMoreInteractions(mockMovieRemoteDataSource);
   });
 
   test('should get popular movies from the data source', () async {
@@ -67,7 +67,7 @@ void main() {
     // assert
     expect(result, tMoviesList);
     verify(mockMovieRemoteDataSource.getPopularMovies());
-    //verifyNoMoreInteractions(mockMovieRemoteDataSource);
+    verifyNoMoreInteractions(mockMovieRemoteDataSource);
   });
 
   test('should get a movie from the data source', () async {
@@ -79,6 +79,6 @@ void main() {
     // assert
     expect(result, tMoviesList);
     verify(mockMovieRemoteDataSource.searchMovies(tQuery));
-    //verifyNoMoreInteractions(mockMovieRemoteDataSource);
+    verifyNoMoreInteractions(mockMovieRemoteDataSource);
   });
 }
