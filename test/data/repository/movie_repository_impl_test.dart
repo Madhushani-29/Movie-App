@@ -3,6 +3,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:movieapp/data/data_source/movie_remote_data_source.dart';
 import 'package:movieapp/data/models/movie_model.dart';
+import 'package:movieapp/data/repository/movie_repository_impl.dart';
 import 'package:movieapp/domain/entities/Movie.dart';
 
 import 'movie_repository_impl_test.mocks.dart';

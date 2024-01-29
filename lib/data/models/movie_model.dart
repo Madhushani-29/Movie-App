@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import '../../domain/entities/Movie.dart';
+
 class MovieModel {
   int id;
   String title;
@@ -31,5 +33,11 @@ class MovieModel {
       'overview': overview,
       'poster_path': posterPath,
     };
+  }
+
+  //convert movie to entity
+  Movie toEntity() {
+    return Movie(
+        id: id, title: title, overview: overview, posterPath: posterPath);
   }
 }
