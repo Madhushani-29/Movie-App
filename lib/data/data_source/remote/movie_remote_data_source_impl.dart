@@ -26,40 +26,37 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
           .map((movie) => MovieModel.fromJson(movie))
           .toList();
       return movies;
-    }
-    else {
+    } else {
       throw ServerException();
     }
   }
 
   @override
   Future<List<MovieModel>> getTrendingMovies() async {
-    final response =
-        await client.get(Uri.parse("$BASE_URL/trending/movie/day?language=en-US&api_key=$API_KEY"));
+    final response = await client.get(Uri.parse(
+        "$BASE_URL/trending/movie/day?language=en-US&api_key=$API_KEY"));
     if (response.statusCode == 200) {
       final responseBody = json.decode(response.body);
       final List<MovieModel> movies = (responseBody['results'] as List)
           .map((movie) => MovieModel.fromJson(movie))
           .toList();
       return movies;
-    }
-    else {
+    } else {
       throw ServerException();
     }
   }
 
   @override
   Future<List<MovieModel>> searchMovies(String query) async {
-    final response =
-        await client.get(Uri.parse("$BASE_URL/search/movie?query=$query&api_key=$API_KEY"));
+    final response = await client
+        .get(Uri.parse("$BASE_URL/search/movie?query=$query&api_key=$API_KEY"));
     if (response.statusCode == 200) {
       final responseBody = json.decode(response.body);
       final List<MovieModel> movies = (responseBody['results'] as List)
           .map((movie) => MovieModel.fromJson(movie))
           .toList();
       return movies;
-    }
-    else {
+    } else {
       throw ServerException();
     }
   }

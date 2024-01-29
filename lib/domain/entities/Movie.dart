@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class Movie {
+import 'package:equatable/equatable.dart';
+
+class Movie extends Equatable {
   final int id;
   final String title;
   final String overview;
@@ -10,4 +12,8 @@ class Movie {
     required this.overview,
     required this.posterPath,
   });
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [id, title, overview, posterPath];
 }

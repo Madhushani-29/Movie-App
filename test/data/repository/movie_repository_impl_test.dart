@@ -1,6 +1,9 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:movieapp/core/error/server_exception.dart';
+import 'package:movieapp/core/error/server_failure.dart';
 import 'package:movieapp/data/data_source/movie_remote_data_source.dart';
 import 'package:movieapp/data/models/movie_model.dart';
 import 'package:movieapp/data/repository/movie_repository_impl.dart';
@@ -81,5 +84,41 @@ void main() {
     expect(result, tMoviesList);
     verify(mockMovieRemoteDataSource.searchMovies(tQuery));
     verifyNoMoreInteractions(mockMovieRemoteDataSource);
+  });
+
+  test(
+      'should return a server failure when the call to the remote data source is unsuccessful',
+      () async {
+    // arrange
+    when(mockMovieRemoteDataSource.getPopularMovies())
+        .thenThrow(ServerException());
+    // act
+    final result = await repository.getPopularMovies();
+    // assert
+    expect(result, equals(Left(ServerFailure)));
+  });
+
+  test(
+      'should return a server failure when the call to the remote data source is unsuccessful',
+      () async {
+    // arrange
+    when(mockMovieRemoteDataSource.getTrendingMovies())
+        .thenThrow(ServerException());
+    // act
+    final result = await repository.getTrendingMovies();
+    // assert
+    expect(result, equals(Left(ServerFailure)));
+  });
+
+  test(
+      'should return a server failure when the call to the remote data source is unsuccessful',
+      () async {
+    // arrange
+    when(mockMovieRemoteDataSource.searchMovies(tQuery))
+        .thenThrow(ServerException());
+    // act
+    final result = await repository.searchMovies(tQuery);
+    // assert
+    expect(result, equals(Left(ServerFailure)));
   });
 }

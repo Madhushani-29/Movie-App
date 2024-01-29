@@ -75,6 +75,8 @@ void main() {
     // act
     final call = dataSource.getTrendingMovies;
     // assert
+    //matcher is used to check that an exception occurs
+    //isA<ServerException>() ensures that the thrown exception is of the expected type
     expect(() => call(), throwsA(isA<ServerException>()));
   });
 
