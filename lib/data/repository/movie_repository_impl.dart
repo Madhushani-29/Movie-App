@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:movieapp/core/error/server_exception.dart';
 import 'package:movieapp/core/error/server_failure.dart';
 import 'package:movieapp/data/data_source/movie_remote_data_source.dart';
 import 'package:movieapp/data/models/movie_model.dart';
