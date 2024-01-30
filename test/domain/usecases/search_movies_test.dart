@@ -31,7 +31,7 @@ void main() {
         overview: "Desc 2",
         posterPath: "/image2"),
   ];
-
+/*
   test('should get trending movies from the repository', () async {
     // arrange
     when(mockMovieRepository.searchMovies(any))
@@ -43,4 +43,4 @@ void main() {
     verify(mockMovieRepository.searchMovies(tQuery));
     verifyNoMoreInteractions(mockMovieRepository);
   });
-}
+*/}

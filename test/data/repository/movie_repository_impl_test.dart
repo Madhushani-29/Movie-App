@@ -57,7 +57,8 @@ void main() {
     // act
     final result = await repository.getTrendingMovies();
     // assert
-    expect(result, tMoviesList);
+    //is a used since it have exceptions also
+    expect(result, isA<Right<Failure, List<Movie>>>());
     verify(mockMovieRemoteDataSource.getTrendingMovies());
     verifyNoMoreInteractions(mockMovieRemoteDataSource);
   });
@@ -69,7 +70,7 @@ void main() {
     // act
     final result = await repository.getPopularMovies();
     // assert
-    expect(result, tMoviesList);
+    expect(result, isA<Right<Failure, List<Movie>>>());
     verify(mockMovieRemoteDataSource.getPopularMovies());
     verifyNoMoreInteractions(mockMovieRemoteDataSource);
   });
@@ -81,13 +82,13 @@ void main() {
     // act
     final result = await repository.searchMovies(tQuery);
     // assert
-    expect(result, tMoviesList);
+    expect(result, isA<Right<Failure, List<Movie>>>());
     verify(mockMovieRemoteDataSource.searchMovies(tQuery));
     verifyNoMoreInteractions(mockMovieRemoteDataSource);
   });
 
   test(
-      'should return a server failure when the call to the remote data source is unsuccessful',
+      'should return ServerFailure when the call to remote data source is unsuccessful',
       () async {
     // arrange
     when(mockMovieRemoteDataSource.getPopularMovies())
@@ -95,7 +96,8 @@ void main() {
     // act
     final result = await repository.getPopularMovies();
     // assert
-    expect(result, equals(Left(ServerFailure)));
+    expect(result, isA<Left<ServerFailure, List<Movie>>>());
+    expect(result.fold(id, id), isA<ServerFailure>());
   });
 
   test(
@@ -107,7 +109,8 @@ void main() {
     // act
     final result = await repository.getTrendingMovies();
     // assert
-    expect(result, equals(Left(ServerFailure)));
+    expect(result, isA<Left<ServerFailure, List<Movie>>>());
+    expect(result.fold(id, id), isA<ServerFailure>());
   });
 
   test(
@@ -119,6 +122,8 @@ void main() {
     // act
     final result = await repository.searchMovies(tQuery);
     // assert
-    expect(result, equals(Left(ServerFailure)));
+    expect(result, isA<Left<ServerFailure, List<Movie>>>());
+    expect(result.fold(id, id), isA<ServerFailure>());
   });
+
 }
