@@ -13,7 +13,7 @@ class TrendingMoviesLoadingSuccess extends TrendingMoviesState {
 }
 
 class TrendingMoviesLoadingFailure extends TrendingMoviesState {
-  final List movies;
+  final String message;
 
-  TrendingMoviesLoadingFailure(this.movies);
+  TrendingMoviesLoadingFailure(this.message);
 }

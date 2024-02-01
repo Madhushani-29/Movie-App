@@ -12,7 +12,7 @@ class PopularMoviesLoadingSuccess extends PopularMoviesState {
 }
 
 class PopularMoviesLoadingFailure extends PopularMoviesState {
-  final List movies;
+  final String message;
 
-  PopularMoviesLoadingFailure(this.movies);
+  PopularMoviesLoadingFailure(this.message);
 }

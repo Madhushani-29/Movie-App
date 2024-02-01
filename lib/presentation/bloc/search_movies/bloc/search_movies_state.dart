@@ -12,7 +12,7 @@ class SearchMoviesLoadingSuccess extends SearchMoviesState {
 }
 
 class SearchMoviesLoadingFailure extends SearchMoviesState {
-  final List movies;
+  final String message;
 
-  SearchMoviesLoadingFailure(this.movies);
+  SearchMoviesLoadingFailure(this.message);
 }
