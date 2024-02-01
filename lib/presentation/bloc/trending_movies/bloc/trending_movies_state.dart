@@ -1,10 +1,19 @@
 part of 'trending_movies_bloc.dart';
 
-sealed class TrendingMoviesState extends Equatable {
-  const TrendingMoviesState();
-  
-  @override
-  List<Object> get props => [];
+sealed class TrendingMoviesState {}
+
+class TrendingMoviesInitial extends TrendingMoviesState {}
+
+class TrendingMoviesLoading extends TrendingMoviesState {}
+
+class TrendingMoviesLoadingSuccess extends TrendingMoviesState {
+  final List movies;
+
+  TrendingMoviesLoadingSuccess(this.movies);
 }
 
-final class TrendingMoviesInitial extends TrendingMoviesState {}
+class TrendingMoviesLoadingFailure extends TrendingMoviesState {
+  final List movies;
+
+  TrendingMoviesLoadingFailure(this.movies);
+}
