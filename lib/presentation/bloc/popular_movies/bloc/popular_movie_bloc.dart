@@ -4,9 +4,9 @@ import 'package:equatable/equatable.dart';
 part 'popular_movie_event.dart';
 part 'popular_movie_state.dart';
 
-class PopularMovieBloc extends Bloc<PopularMovieEvent, PopularMovieState> {
-  PopularMovieBloc() : super(PopularMovieInitial()) {
-    on<PopularMovieEvent>((event, emit) {
+class PopularMovieBloc extends Bloc<PopularMoviesEvent, PopularMoviesState> {
+  PopularMovieBloc() : super(PopularMoviesInitial()) {
+    on<PopularMoviesEvent>((event, emit) {
       // TODO: implement event handler
     });
   }

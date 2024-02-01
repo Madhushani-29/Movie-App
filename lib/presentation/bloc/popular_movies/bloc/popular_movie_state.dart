@@ -1,10 +1,18 @@
 part of 'popular_movie_bloc.dart';
 
-sealed class PopularMovieState extends Equatable {
-  const PopularMovieState();
-  
-  @override
-  List<Object> get props => [];
+sealed class PopularMoviesState {}
+
+class PopularMoviesInitial extends PopularMoviesState {}
+
+class PopularMoviesLoading extends PopularMoviesState {}
+
+class PopularMoviesLoadingSuccess extends PopularMoviesState {
+  final List movies;
+  PopularMoviesLoadingSuccess(this.movies);
 }
 
-final class PopularMovieInitial extends PopularMovieState {}
+class PopularMoviesLoadingFailure extends PopularMoviesState {
+  final List movies;
+
+  PopularMoviesLoadingFailure(this.movies);
+}

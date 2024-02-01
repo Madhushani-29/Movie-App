@@ -1,10 +1,18 @@
 part of 'search_movies_bloc.dart';
 
-sealed class SearchMoviesState extends Equatable {
-  const SearchMoviesState();
-  
-  @override
-  List<Object> get props => [];
+sealed class SearchMoviesState {}
+
+class SearchMoviesInitial extends SearchMoviesState {}
+
+class SearchMoviesLoading extends SearchMoviesState {}
+
+class SearchMoviesLoadingSuccess extends SearchMoviesState {
+  final List movies;
+  SearchMoviesLoadingSuccess(this.movies);
 }
 
-final class SearchMoviesInitial extends SearchMoviesState {}
+class SearchMoviesLoadingFailure extends SearchMoviesState {
+  final List movies;
+
+  SearchMoviesLoadingFailure(this.movies);
+}
