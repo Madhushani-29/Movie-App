@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:movieapp/domain/usecase/get_trending_movies.dart';
 
 part 'trending_movies_event.dart';
 part 'trending_movies_state.dart';
