@@ -7,7 +7,7 @@ class PopularMoviesInitial extends PopularMoviesState {}
 class PopularMoviesLoading extends PopularMoviesState {}
 
 class PopularMoviesLoadingSuccess extends PopularMoviesState {
-  final List movies;
+  final List<Movie> movies;
   PopularMoviesLoadingSuccess(this.movies);
 }
 

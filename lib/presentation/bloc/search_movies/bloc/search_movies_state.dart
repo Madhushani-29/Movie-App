@@ -7,7 +7,7 @@ class SearchMoviesInitial extends SearchMoviesState {}
 class SearchMoviesLoading extends SearchMoviesState {}
 
 class SearchMoviesLoadingSuccess extends SearchMoviesState {
-  final List movies;
+  final List<Movie> movies;
   SearchMoviesLoadingSuccess(this.movies);
 }
 
