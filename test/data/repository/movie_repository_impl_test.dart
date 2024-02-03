@@ -125,5 +125,4 @@ void main() {
     expect(result, isA<Left<ServerFailure, List<Movie>>>());
     expect(result.fold(id, id), isA<ServerFailure>());
   });
-
 }
