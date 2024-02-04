@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movieapp/injection_container.dart';
 
 void main() {
+  init();
   runApp(const MyApp());
 }
 
