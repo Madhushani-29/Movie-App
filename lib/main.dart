@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movieapp/injection_container.dart';
+import 'package:movieapp/presentation/widgets/movie_list.dart';
 
 void main() {
   init();
@@ -11,10 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Container(
-        height: 100,
-        width: 200,
-        color: Colors.pink,
+      home: Scaffold(
+        appBar: AppBar(),
+        body: const MovieList(),
       ),
     );
   }
