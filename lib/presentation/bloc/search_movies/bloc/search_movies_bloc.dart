@@ -7,7 +7,8 @@ part 'search_movies_state.dart';
 
 class SearchMoviesBloc extends Bloc<SearchMoviesEvent, SearchMoviesState> {
   final SearchMovies searchMovies;
-  SearchMoviesBloc(this.searchMovies) : super(SearchMoviesInitial()) {
+  SearchMoviesBloc({required this.searchMovies})
+      : super(SearchMoviesInitial()) {
     on<FetchSearchMovies>((event, emit) async {
       emit(SearchMoviesLoading());
       final failureOrMovies = await searchMovies(event.query);

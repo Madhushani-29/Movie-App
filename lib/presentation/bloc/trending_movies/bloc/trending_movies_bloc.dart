@@ -8,7 +8,8 @@ part 'trending_movies_state.dart';
 class TrendingMoviesBloc
     extends Bloc<TrendingMoviesEvent, TrendingMoviesState> {
   final GetTrendingMovies getTrendingMovies;
-  TrendingMoviesBloc(this.getTrendingMovies) : super(TrendingMoviesInitial()) {
+  TrendingMoviesBloc({required this.getTrendingMovies})
+      : super(TrendingMoviesInitial()) {
     on<FetchTrendingMovies>((event, emit) async {
       emit(TrendingMoviesLoading());
       final failureOrMovies = await getTrendingMovies();
