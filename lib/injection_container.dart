@@ -27,6 +27,8 @@ void init() {
   getIt.registerLazySingleton(() => GetPopularMovies(getIt()));
   getIt.registerLazySingleton(() => GetTrendingMovies(getIt()));
   getIt.registerLazySingleton(() => SearchMovies(getIt()));
+  //It ensures that only one instance of GetPopularMovies exists in the application
+  //instance is created only when it is first requested
 
   //Repositories
   getIt.registerLazySingleton<MovieRepository>(
