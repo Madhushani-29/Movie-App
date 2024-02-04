@@ -1,4 +1,7 @@
 import 'package:get_it/get_it.dart';
+import 'package:http/http.dart';
+import 'package:movieapp/data/repository/movie_repository_impl.dart';
+import 'package:movieapp/domain/repositories/movie_repository.dart';
 import 'package:movieapp/presentation/bloc/popular_movies/bloc/popular_movie_bloc.dart';
 import 'package:movieapp/presentation/bloc/search_movies/bloc/search_movies_bloc.dart';
 import 'package:movieapp/presentation/bloc/trending_movies/bloc/trending_movies_bloc.dart';
@@ -16,6 +19,9 @@ void init() {
   //whenever someone requests an instance of PopularMovieBloc, GetIt will create a new instance
 
   //Use cases
+  getIt.registerLazySingleton<MovieRepository>(
+      () => MovieRepositoryImpl(remoteDataSource: getIt()));
+
   //Repositories
   //Data sources
   //Http services
