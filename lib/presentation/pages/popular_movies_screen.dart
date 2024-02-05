@@ -12,24 +12,21 @@ class PopularMovieScreen extends StatelessWidget {
     return Scaffold(
         body: BlocConsumer<PopularMovieBloc, PopularMoviesState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is PopularMoviesLoadingFailure) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.message)));
+        }
       },
       builder: (context, state) {
-        if (state is PopularMoviesInitial) {
-          return Text("Initial");
-        }
         if (state is PopularMoviesLoadingSuccess) {
-          print(state.movies);
-          return Text("Success");
-          //return MovieList(movies: state.movies);
-        }
-        if (state is PopularMoviesLoadingFailure) {
-          return Text("Failure");
+          return MovieList(movies: state.movies);
         }
         if (state is PopularMoviesLoading) {
-          return Text("Loading");
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
-        return Text("Not");
+        return Container();
       },
     ));
   }
