@@ -13,12 +13,16 @@ class MovieList extends StatelessWidget {
         var movie = movies[index];
         return ListTile(
           leading: Image.network(
-            'https://picsum.photos/250?image=9',
-            width: 50,
+            'https://image.tmdb.org/t/p/w500/${movie.posterPath}',
+            width: 80,
             fit: BoxFit.cover,
+            alignment: Alignment.topCenter,
           ),
-          title: Text('Movie Title'),
-          subtitle: Text("Movie Overview"),
+          title: Text(
+            movie.title,
+            style: const TextStyle(fontWeight: FontWeight.w600),
+          ),
+          subtitle: Text(movie.overview),
           onTap: () {},
         );
       },

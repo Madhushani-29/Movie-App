@@ -11,23 +11,21 @@ class TrendingMovieScreen extends StatelessWidget {
     return Scaffold(
         body: BlocConsumer<TrendingMoviesBloc, TrendingMoviesState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is TrendingMoviesLoadingFailure) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.message)));
+        }
       },
       builder: (context, state) {
-        if (state is TrendingMoviesInitial) {
-          return Text("Initial");
-        }
         if (state is TrendingMoviesLoadingSuccess) {
-          print(state.movies);
           return MovieList(movies: state.movies);
         }
-        if (state is TrendingMoviesLoadingFailure) {
-          return Text("Failure");
-        }
         if (state is TrendingMoviesLoading) {
-          return Text("Loading");
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         }
-        return Text("Not");
+        return Container();
       },
     ));
   }
