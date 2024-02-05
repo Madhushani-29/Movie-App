@@ -22,7 +22,9 @@ class PopularMovieScreen extends StatelessWidget {
         }
         if (state is PopularMoviesLoading) {
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(
+              color: Colors.orange,
+            ),
           );
         }
         return Container();

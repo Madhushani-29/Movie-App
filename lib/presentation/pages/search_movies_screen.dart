@@ -63,19 +63,25 @@ class SearchMovieScreen extends StatelessWidget {
                 ),
               ],
             ),
-            BlocBuilder<SearchMoviesBloc, SearchMoviesState>(
-              builder: (context, state) {
-                if (state is SearchMoviesLoadingFailure) {
-                  return const Text("Failure");
-                }
-                if (state is SearchMoviesLoadingSuccess) {
-                  MovieList(movies: state.movies);
-                }
-                if (state is SearchMoviesLoading) {
-                  return const Text("Loading");
-                }
-                return Container();
-              },
+            Expanded(
+              child: BlocBuilder<SearchMoviesBloc, SearchMoviesState>(
+                builder: (context, state) {
+                  if (state is SearchMoviesLoadingFailure) {
+                    return const Text("Failure");
+                  }
+                  if (state is SearchMoviesLoadingSuccess) {
+                    return MovieList(movies: state.movies);
+                  }
+                  if (state is SearchMoviesLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.orange,
+                      ),
+                    );
+                  }
+                  return Container();
+                },
+              ),
             )
           ],
         ),
