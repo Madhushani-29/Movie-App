@@ -69,7 +69,25 @@ class SearchMovieScreen extends StatelessWidget {
                 },
                 builder: (context, state) {
                   if (state is SearchMoviesLoadingSuccess) {
-                    return MovieList(movies: state.movies);
+                    if (state.movies.isEmpty) {
+                      return Container(
+                        alignment: Alignment.center,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.warning,
+                              color: Colors.red[300],
+                              size: 40,
+                            ),
+                            const SizedBox(height: 8),
+                            Text("No Results for the search."),
+                          ],
+                        ),
+                      );
+                    } else {
+                      return MovieList(movies: state.movies);
+                    }
                   }
                   if (state is SearchMoviesLoading) {
                     return const Center(
