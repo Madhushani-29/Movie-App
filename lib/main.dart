@@ -5,8 +5,6 @@ import 'package:movieapp/presentation/bloc/popular_movies/bloc/popular_movie_blo
 import 'package:movieapp/presentation/bloc/search_movies/bloc/search_movies_bloc.dart';
 import 'package:movieapp/presentation/bloc/trending_movies/bloc/trending_movies_bloc.dart';
 import 'package:movieapp/presentation/pages/trending_movies_screen.dart';
-import 'package:movieapp/presentation/widgets/movie_list.dart';
-
 void main() {
   init();
   runApp(const MyApp());
