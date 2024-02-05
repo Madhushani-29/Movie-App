@@ -36,7 +36,14 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           home: Scaffold(
             appBar: AppBar(
-              title: Text("TrendWatch"),
+              backgroundColor: Colors.orange[300],
+              title: const Text(
+                "Trend Watch",
+                style: TextStyle(
+                    fontFamily: '',
+                    color: Colors.black,
+                    fontWeight: FontWeight.w700),
+              ),
             ),
             body: SafeArea(
               child: DefaultTabController(
@@ -44,16 +51,17 @@ class MyApp extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     ButtonsTabBar(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                      buttonMargin: EdgeInsets.only(
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 20),
+                      buttonMargin: const EdgeInsets.only(
                         left: 20,
                         top: 10,
                       ),
                       backgroundColor: Colors.orange[400],
                       unselectedBackgroundColor: Colors.orange[100],
-                      unselectedLabelStyle: TextStyle(
+                      unselectedLabelStyle: const TextStyle(
                           color: Colors.black), // Change the color here
-                      labelStyle: TextStyle(
+                      labelStyle: const TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                       tabs: const [
                         Tab(
