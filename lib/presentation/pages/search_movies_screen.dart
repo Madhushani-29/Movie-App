@@ -9,7 +9,6 @@ class SearchMovieScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final searchMovieBloc = BlocProvider.of<SearchMoviesBloc>(context);
-    String? searchQuery;
     TextEditingController searchQueryController = TextEditingController();
 
     return Scaffold(
@@ -21,11 +20,8 @@ class SearchMovieScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextField(
-                    onChanged: (value) {
-                      searchQuery = value;
-                    },
+                    onChanged: (value) {},
                     controller: searchQueryController,
-                    keyboardType: TextInputType.name,
                     style: const TextStyle(fontSize: 12),
                     autofocus: true,
                     cursorColor: Colors.black,
@@ -45,8 +41,8 @@ class SearchMovieScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 8.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      searchMovieBloc
-                          .add(FetchSearchMovies(searchQuery.toString()));
+                      searchMovieBloc.add(
+                          FetchSearchMovies(searchQueryController.text.trim()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.orange[200],
@@ -64,11 +60,14 @@ class SearchMovieScreen extends StatelessWidget {
               ],
             ),
             Expanded(
-              child: BlocBuilder<SearchMoviesBloc, SearchMoviesState>(
-                builder: (context, state) {
+              child: BlocConsumer<SearchMoviesBloc, SearchMoviesState>(
+                listener: (context, state) {
                   if (state is SearchMoviesLoadingFailure) {
-                    return const Text("Failure");
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text(state.message)));
                   }
+                },
+                builder: (context, state) {
                   if (state is SearchMoviesLoadingSuccess) {
                     return MovieList(movies: state.movies);
                   }
