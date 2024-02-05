@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movieapp/presentation/bloc/popular_movies/bloc/popular_movie_bloc.dart';
-import 'package:movieapp/presentation/bloc/trending_movies/bloc/trending_movies_bloc.dart';
 import 'package:movieapp/presentation/widgets/movie_list.dart';
 
 class PopularMovieScreen extends StatelessWidget {

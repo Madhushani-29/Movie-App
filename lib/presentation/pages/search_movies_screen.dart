@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movieapp/presentation/bloc/search_movies/bloc/search_movies_bloc.dart';
+import 'package:movieapp/presentation/widgets/movie_list.dart';
 
 class SearchMovieScreen extends StatelessWidget {
   const SearchMovieScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final searchMovieBloc = BlocProvider.of<SearchMoviesBloc>(context);
     String? searchQuery;
     TextEditingController searchQueryController = TextEditingController();
 
     return Scaffold(
       body: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         child: Column(
           children: [
             Row(
@@ -21,41 +26,57 @@ class SearchMovieScreen extends StatelessWidget {
                     },
                     controller: searchQueryController,
                     keyboardType: TextInputType.name,
-                    style: TextStyle(fontSize: 12),
+                    style: const TextStyle(fontSize: 12),
                     autofocus: true,
                     cursorColor: Colors.black,
-                    decoration: InputDecoration(
-                      filled: true,
-                      prefixIcon: Icon(Icons.location_city),
-                      hintText: "Enter Name",
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(),
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.search),
+                      contentPadding: EdgeInsets.symmetric(vertical: 2.0),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black),
                         borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
+                          Radius.circular(5.0),
                         ),
                       ),
                     ),
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    print("Clicked");
-                    print(searchQuery);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.orange[200],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      searchMovieBloc
+                          .add(FetchSearchMovies(searchQuery.toString()));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange[200],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      fixedSize: const Size(100, 30),
                     ),
-                    fixedSize: const Size(100, 30),
-                  ),
-                  child: const Text(
-                    'Search',
-                    style: TextStyle(color: Colors.black),
+                    child: const Text(
+                      'Search',
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
                 ),
               ],
             ),
+            BlocBuilder<SearchMoviesBloc, SearchMoviesState>(
+              builder: (context, state) {
+                if (state is SearchMoviesLoadingFailure) {
+                  return const Text("Failure");
+                }
+                if (state is SearchMoviesLoadingSuccess) {
+                  MovieList(movies: state.movies);
+                }
+                if (state is SearchMoviesLoading) {
+                  return const Text("Loading");
+                }
+                return Container();
+              },
+            )
           ],
         ),
       ),
