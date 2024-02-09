@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movieapp/bloc_observer.dart';
 import 'package:movieapp/injection_container.dart';
 import 'package:movieapp/presentation/bloc/popular_movies/bloc/popular_movie_bloc.dart';
 import 'package:movieapp/presentation/bloc/search_movies/bloc/search_movies_bloc.dart';
@@ -11,7 +10,6 @@ import 'package:movieapp/presentation/pages/search_movies_screen.dart';
 import 'package:movieapp/presentation/pages/trending_movies_screen.dart';
 
 void main() {
-  Bloc.observer=AppBlocObserver();
   init();
   runApp(const MyApp());
 }
