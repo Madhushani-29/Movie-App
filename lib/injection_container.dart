@@ -14,7 +14,7 @@ import 'package:http/http.dart' as http;
 //Create an instance of the GetIt service locator
 final getIt = GetIt.instance;
 
-//init () method responsible for initializing and registering dependencies
+//init () is responsible for initializing and registering dependencies
 void init() {
   //Bloc
   getIt.registerFactory(() => PopularMovieBloc(getPopularMovies: getIt()));
