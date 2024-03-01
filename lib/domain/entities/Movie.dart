@@ -13,6 +13,9 @@ class Movie extends Equatable {
     required this.posterPath,
   });
 
+  //Overrides the props getter method from the Equatable class
+  //This method is used to define the list of properties that should be considered when 
+  //determining the equality of two instances of the Todo class
   @override
   // TODO: implement props
   List<Object?> get props => [id, title, overview, posterPath];
