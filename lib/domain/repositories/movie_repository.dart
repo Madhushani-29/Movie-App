@@ -7,3 +7,4 @@ abstract class MovieRepository{
   Future <Either<Failure, List<Movie>>> searchMovies(String query);
   Future <Either<Failure, List<Movie>>> getPopularMovies();
 }
+
